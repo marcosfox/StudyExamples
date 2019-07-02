@@ -7,19 +7,12 @@ namespace Alunos.API.ViewModel
 {
     public class GetResponseVM
     {
-        public List<GetResponseAlunosVM> Alunos { get; set; }
+        public List<AlunoResponseVM> Alunos { get; set; }
         public string ErroMensagem { get; set; }
 
         public GetResponseVM()
         {
-            Alunos = new List<GetResponseAlunosVM>();
+            Alunos = new List<AlunoResponseVM>();
         }
-    }
-    public class GetResponseAlunosVM
-    {
-        public int idAluno { get; set; }
-        public string NomeAluno { get; set; }
-        public string CPF { get; set; }
-        public bool  Ativo { get; set; }
     }
 }

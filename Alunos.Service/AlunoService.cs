@@ -21,5 +21,9 @@ namespace Alunos.Service
         {
             return _alunoRepository.GetAll();
         }
+
+        public IQueryable<Aluno> getByIdOrName(Aluno objAluno){
+            return _alunoRepository.getByIdOrName(objAluno);
+        }
     }
 }

@@ -39,6 +39,22 @@ namespace Alunos.API.Controllers
 
             return vm;
         }
+        [HttpPut]
+        public GetResponseVM Put([FromBody] FilterAlunoVM vmAluno)
+        {
+            GetResponseVM vm = new GetResponseVM();
+
+            try
+            {
+                vm = convertToVM(_alunoService.getByIdOrName(convertVMToModel(vmAluno)));
+            }
+            catch (Exception ex)
+            {
+                vm.ErroMensagem = ex.Message;
+            }
+
+            return vm;
+        }
 
         #region methods
         private GetResponseVM convertToVM(IQueryable<Aluno> alunos)
@@ -48,7 +64,7 @@ namespace Alunos.API.Controllers
             try
             {
                 foreach (var aluno in alunos)
-                    vm.Alunos.Add(new GetResponseAlunosVM
+                    vm.Alunos.Add(new AlunoResponseVM
                     {
                         idAluno = aluno.NumSeqAluno,
                         NomeAluno = aluno.NomAbreviado,
@@ -62,6 +78,23 @@ namespace Alunos.API.Controllers
             }
 
             return vm;
+        }
+        private Aluno convertVMToModel(FilterAlunoVM vmAluno)
+        {
+            GetResponseVM vm = new GetResponseVM();
+
+            try
+            {
+                    return new Aluno
+                    {
+                        NumSeqAluno = vmAluno.Id,
+                        NomAluno = vmAluno.Nome
+                    };
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         #endregion methods
 

@@ -7,5 +7,6 @@ namespace Alunos.Core.Interface.Service
     public interface IAlunoService
     {
         IQueryable<Aluno> getAll();
+        IQueryable<Aluno> getByIdOrName(Aluno objAluno);
     }
 }
